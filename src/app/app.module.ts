@@ -13,8 +13,11 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {HttpModule} from '@angular/http';
-import { GovInvoicesComponent } from './components/gov-invoices/gov-invoices.component';
-import { UserInvoicesComponent } from './components/user-invoices/user-invoices.component';
+import {GovInvoicesComponent} from './components/gov-invoices/gov-invoices.component';
+import {UserInvoicesComponent} from './components/user-invoices/user-invoices.component';
+import {StatusIconComponent} from './components/status-icon/status-icon.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {InvoicePageComponent} from './pages/invoice-page/invoice-page.component';
 
 const appRoutes: Routes = [
 	{
@@ -24,6 +27,16 @@ const appRoutes: Routes = [
 	{
 		path: '',
 		component: HomePageComponent,
+		canActivate: [AuthGuardService]
+	},
+	{
+		path: 'facturen',
+		component: HomePageComponent,
+		canActivate: [AuthGuardService]
+	},
+	{
+		path: 'facturen/:id',
+		component: InvoicePageComponent,
 		canActivate: [AuthGuardService]
 	},
 ];
@@ -36,7 +49,9 @@ const appRoutes: Routes = [
 		LoginFormComponent,
 		HomePageComponent,
 		GovInvoicesComponent,
-		UserInvoicesComponent
+		UserInvoicesComponent,
+		StatusIconComponent,
+		InvoicePageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -44,6 +59,7 @@ const appRoutes: Routes = [
 			appRoutes
 		),
 		HttpModule,
+		AngularFontAwesomeModule
 	],
 	providers: [
 		AuthGuardService,

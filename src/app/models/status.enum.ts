@@ -3,6 +3,7 @@
  */
 
 export enum Status {
+	OVERDUE,
 	PENDING,
 	PAID
 }

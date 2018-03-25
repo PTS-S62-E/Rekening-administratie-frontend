@@ -8,11 +8,16 @@
 	</tr>
 	</thead>
 	<tbody>
-	<tr>
-		<th scope="row">1</th>
-		<td>Mark</td>
-		<td>Otto</td>
-		<td>@mdo</td>
+	<tr *ngFor="let invoice of invoices">
+		<th scope="row"><a [routerLink]="['/facturen/', invoice.id]">{{invoice.person.name}}</a>
+		</th>
+		<td>€ {{invoice.price.toFixed(2).toString().replace(".", ",")}}</td>
+		<td> {{invoice.due.getDate()}}-{{invoice.due.getMonth() +
+			1}}-{{invoice.due.getFullYear()}}
+		</td>
+		<td>
+			<app-status-icon [status]="invoice.status"></app-status-icon>
+		</td>
 	</tr>
 	</tbody>
 </table>

@@ -22,8 +22,4 @@ export class Invoice {
 		this.status = status;
 		this.price = price;
 	}
-
-	isOverDue(): boolean {
-		return (this.due < new Date() && this.status !== Status.PAID);
-	}
 }
