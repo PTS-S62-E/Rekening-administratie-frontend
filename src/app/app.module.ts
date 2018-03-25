@@ -13,6 +13,8 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {HttpModule} from '@angular/http';
+import { GovInvoicesComponent } from './components/gov-invoices/gov-invoices.component';
+import { UserInvoicesComponent } from './components/user-invoices/user-invoices.component';
 
 const appRoutes: Routes = [
 	{
@@ -32,7 +34,9 @@ const appRoutes: Routes = [
 		HeaderComponent,
 		LoginPageComponent,
 		LoginFormComponent,
-		HomePageComponent
+		HomePageComponent,
+		GovInvoicesComponent,
+		UserInvoicesComponent
 	],
 	imports: [
 		BrowserModule,
