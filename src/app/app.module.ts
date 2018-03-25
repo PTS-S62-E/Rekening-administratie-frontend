@@ -15,38 +15,38 @@ import {CookieService} from 'ngx-cookie-service';
 import {HttpModule} from '@angular/http';
 
 const appRoutes: Routes = [
-  {
-    path: 'login',
-    component: LoginPageComponent
-  },
-  {
-    path: '',
-    component: HomePageComponent,
-    canActivate: [AuthGuardService]
-  },
+	{
+		path: 'login',
+		component: LoginPageComponent
+	},
+	{
+		path: '',
+		component: HomePageComponent,
+		canActivate: [AuthGuardService]
+	},
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    LoginPageComponent,
-    LoginFormComponent,
-    HomePageComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(
-      appRoutes
-    ),
-    HttpModule,
-  ],
-  providers: [
-    AuthGuardService,
-    AuthService,
-    CookieService,
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		LoginPageComponent,
+		LoginFormComponent,
+		HomePageComponent
+	],
+	imports: [
+		BrowserModule,
+		RouterModule.forRoot(
+			appRoutes
+		),
+		HttpModule,
+	],
+	providers: [
+		AuthGuardService,
+		AuthService,
+		CookieService,
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule {
 }
