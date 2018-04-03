@@ -1,0 +1,21 @@
+{
+	"Invoices": "Invoices",
+	"Invoice": "Invoice",
+	"Person": "Person",
+	"Price": "Price",
+	"Due date": "Due date",
+	"Status": "Status",
+	"Account Administration": "Account Administration",
+	"Email": "Email",
+	"Password": "Password",
+	"Back": "Back",
+	"Previous": "Previous",
+	"Next": "Next",
+	"Details": "Details",
+	"Id": "Id",
+	"Name": "Name",
+	"Address": "Address",
+	"Zipcode": "Zipcode",
+	"City": "City",
+	"Distance": "Distanc"
+}

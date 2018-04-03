@@ -18,8 +18,14 @@ import {UserInvoicesComponent} from './components/user-invoices/user-invoices.co
 import {StatusIconComponent} from './components/status-icon/status-icon.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {InvoicePageComponent} from './pages/invoice-page/invoice-page.component';
-import {InvoiceService} from "./services/invoice.service";
+import {InvoiceService} from './services/invoice.service';
 import { GovInvoiceComponent } from './components/gov-invoice/gov-invoice.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {
+	TranslateModule, TranslateLoader,
+	TranslateService
+} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 const appRoutes: Routes = [
 	{
@@ -62,7 +68,15 @@ const appRoutes: Routes = [
 			appRoutes
 		),
 		HttpModule,
-		AngularFontAwesomeModule
+		AngularFontAwesomeModule,
+		HttpClientModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient]
+			}
+		})
 	],
 	providers: [
 		AuthGuardService,
@@ -73,4 +87,8 @@ const appRoutes: Routes = [
 	bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+	return new TranslateHttpLoader(http);
 }

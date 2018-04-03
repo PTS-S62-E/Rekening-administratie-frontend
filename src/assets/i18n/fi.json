@@ -1,0 +1,21 @@
+{
+	"Invoices": "Laskut",
+	"Invoice": "Lasku",
+	"Person": "Henkilö",
+	"Price": "Hinta",
+	"Due date": "Eräpäivä",
+	"Status": "Status",
+	"Account Administration": "Tilinhallinta",
+	"Email": "Emali",
+	"Password": "Salasana",
+	"Back": "Takaisin",
+	"Previous": "Edellinen",
+	"Next": "Seuraava",
+	"Details": "Yksityiskohdat",
+	"Id": "Id",
+	"Name": "Nimi",
+	"Address": "Osoite",
+	"Zipcode": "Postinumero",
+	"City": "Kaupunki",
+	"Distance": "Etäisyys"
+}
