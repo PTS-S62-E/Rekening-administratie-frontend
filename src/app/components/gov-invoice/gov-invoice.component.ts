@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class GovInvoiceComponent implements OnInit {
 	invoice: Invoice;
 
-	constructor(private invoiceService: InvoiceService,
+	constructor(public invoiceService: InvoiceService,
 				private route: ActivatedRoute) {
 	}
 
