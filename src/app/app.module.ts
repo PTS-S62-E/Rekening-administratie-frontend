@@ -18,6 +18,8 @@ import {UserInvoicesComponent} from './components/user-invoices/user-invoices.co
 import {StatusIconComponent} from './components/status-icon/status-icon.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {InvoicePageComponent} from './pages/invoice-page/invoice-page.component';
+import {InvoiceService} from "./services/invoice.service";
+import { GovInvoiceComponent } from './components/gov-invoice/gov-invoice.component';
 
 const appRoutes: Routes = [
 	{
@@ -52,6 +54,7 @@ const appRoutes: Routes = [
 		UserInvoicesComponent,
 		StatusIconComponent,
 		InvoicePageComponent,
+		GovInvoiceComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -65,6 +68,7 @@ const appRoutes: Routes = [
 		AuthGuardService,
 		AuthService,
 		CookieService,
+		InvoiceService
 	],
 	bootstrap: [AppComponent]
 })

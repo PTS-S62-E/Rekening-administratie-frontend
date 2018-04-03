@@ -1,9 +1,9 @@
 <table class="table">
 	<thead>
 	<tr>
-		<th scope="col">Persoon</th>
-		<th scope="col">Prijs</th>
-		<th scope="col">Betalen voor</th>
+		<th scope="col">Henkilö</th>
+		<th scope="col">Hinta</th>
+		<th scope="col">Eräpäivä</th>
 		<th scope="col">Status</th>
 	</tr>
 	</thead>
@@ -11,12 +11,12 @@
 	<tr *ngFor="let invoice of invoices">
 		<th scope="row"><a [routerLink]="['/facturen/', invoice.id]">{{invoice.person.name}}</a>
 		</th>
-		<td>€ {{invoice.price.toFixed(2).toString().replace(".", ",")}}</td>
+		<td>€ {{invoice.getPrice()}}</td>
 		<td> {{invoice.due.getDate()}}-{{invoice.due.getMonth() +
 			1}}-{{invoice.due.getFullYear()}}
 		</td>
 		<td>
-			<app-status-icon [status]="invoice.status"></app-status-icon>
+			<app-status-icon [status]="invoice.getStatus()"></app-status-icon>
 		</td>
 	</tr>
 	</tbody>

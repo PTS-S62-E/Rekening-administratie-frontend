@@ -8,16 +8,15 @@
 </div>
 <form>
 	<div class="form-group">
-		<label for="username">Email</label>
+		<label for="username">Emali</label>
 		<input type="text" required="required" id="username" name="username" class="form-control" #username>
 	</div>
 	<div class="form-group">
-		<label for="password">Password</label>
+		<label for="password">Salasana</label>
 		<input type="password" required="required" id="password" name="password" class="form-control" #password>
 	</div>
 	<div class="form-group">
 		<button class="btn btn-primary" (click)="onLogin(username.value, password.value)">Login</button>
-		<a routerLink="/register">New here? Create a new account!</a>
 		<hr/>
 	</div>
 </form>

@@ -1,0 +1,76 @@
+<div class="row">
+	<div class="col">
+		<a [routerLink]="['/facturen/']">&lt; Takaisin</a>
+	</div>
+</div>
+<div class="row">
+	<section class="col-8">
+		<h2>Yleinen:</h2>
+		<table class="table">
+			<tr>
+				<th>Eräpäivä:</th>
+				<td>{{this.invoice.due}}</td>
+			</tr>
+			<tr>
+				<th>Hinta:</th>
+				<td>€ {{this.invoice.getPrice()}}</td>
+			</tr>
+			<tr>
+				<th>Status:</th>
+				<td><app-status-icon [status]="this.invoice.getStatus()"></app-status-icon></td>
+			</tr>
+		</table>
+	</section>
+	<section class="col-4">
+		<h2>Henkilö:</h2>
+		<table class="table">
+			<tr>
+				<th>Id:</th>
+				<td>{{this.invoice.person.id}}</td>
+			</tr>
+			<tr>
+				<th>Nimi:</th>
+				<td>{{this.invoice.person.name}}</td>
+			</tr>
+			<tr>
+				<th>Osoite:</th>
+				<td>{{this.invoice.person.address}}</td>
+			</tr>
+			<tr>
+				<th>Postinumero:</th>
+				<td>{{this.invoice.person.zipcode}}</td>
+			</tr>
+			<tr>
+				<th>Kaupunki:</th>
+				<td>{{this.invoice.person.city}}</td>
+			</tr>
+		</table>
+	</section>
+</div>
+<div class="row">
+	<section class="col">
+		<h2>
+			Yksityiskohdat
+		</h2>
+		<table class="table">
+			<tr>
+				<th>Kuvaus</th>
+				<th>Hinta</th>
+				<th>Etäisyys</th>
+			</tr>
+			<tr *ngFor="let detail of this.invoice.details">
+				<td>{{detail.description}}</td>
+				<td>€ {{detail.getPrice()}}</td>
+				<td>{{detail.distance}}km</td>
+			</tr>
+		</table>
+	</section>
+</div>
+<div class="row">
+	<div class="col">
+		<a [routerLink]="['/facturen/', this.invoice.id - 1]">&lt; Edellinen</a>
+	</div>
+	<div class="col"  style="text-align: right">
+		<a [routerLink]="['/facturen/', this.invoice.id + 1]">Seuraava &gt;</a>
+	</div>
+</div>
