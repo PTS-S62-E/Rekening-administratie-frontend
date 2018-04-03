@@ -67,10 +67,10 @@
 	</section>
 </div>
 <div class="row">
-	<div class="col">
+	<div *ngIf="this.invoice.id > 0" class="col">
 		<a [routerLink]="['/facturen/', this.invoice.id - 1]">&lt; Edellinen</a>
 	</div>
-	<div class="col"  style="text-align: right">
+	<div *ngIf="this.invoice.id + 2 <= this.invoiceService.getAll().length" class="col"  style="text-align: right">
 		<a [routerLink]="['/facturen/', this.invoice.id + 1]">Seuraava &gt;</a>
 	</div>
 </div>
