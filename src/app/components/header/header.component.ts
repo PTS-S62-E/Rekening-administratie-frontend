@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
 	selector: 'app-header',
@@ -8,7 +9,8 @@ import {AuthService} from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-	constructor(private auth: AuthService) {
+	constructor(private auth: AuthService,
+				private translate: TranslateService) {
 	}
 
 	ngOnInit() {
@@ -20,5 +22,9 @@ export class HeaderComponent implements OnInit {
 
 	isLoggedIn(): boolean {
 		return this.auth.isAuthenticated();
+	}
+
+	switchLanguage(language: string) {
+		this.translate.use(language);
 	}
 }

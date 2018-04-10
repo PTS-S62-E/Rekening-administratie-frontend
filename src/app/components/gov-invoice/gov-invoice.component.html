@@ -1,47 +1,50 @@
 <div class="row">
 	<div class="col">
-		<a [routerLink]="['/facturen/']">&lt; Takaisin</a>
+		<a [routerLink]="['/facturen/']">&lt; {{'Back' | translate}}</a>
 	</div>
 </div>
 <div class="row">
 	<section class="col-8">
-		<h2>Yleinen:</h2>
+		<h2>{{'General' | translate}}:</h2>
 		<table class="table">
 			<tr>
-				<th>Eräpäivä:</th>
+				<th>{{'Due date' | translate}}:</th>
 				<td>{{this.invoice.due}}</td>
 			</tr>
 			<tr>
-				<th>Hinta:</th>
+				<th>{{'Price' | translate}}:</th>
 				<td>€ {{this.invoice.getPrice()}}</td>
 			</tr>
 			<tr>
-				<th>Status:</th>
-				<td><app-status-icon [status]="this.invoice.getStatus()"></app-status-icon></td>
+				<th>{{'Status' | translate}}:</th>
+				<td>
+					<app-status-icon
+						[status]="this.invoice.getStatus()"></app-status-icon>
+				</td>
 			</tr>
 		</table>
 	</section>
 	<section class="col-4">
-		<h2>Henkilö:</h2>
+		<h2>{{'Person' | translate}}:</h2>
 		<table class="table">
 			<tr>
-				<th>Id:</th>
+				<th>{{'Id' | translate}}:</th>
 				<td>{{this.invoice.person.id}}</td>
 			</tr>
 			<tr>
-				<th>Nimi:</th>
+				<th>{{'Name' | translate}}:</th>
 				<td>{{this.invoice.person.name}}</td>
 			</tr>
 			<tr>
-				<th>Osoite:</th>
+				<th>{{'Address' | translate}}:</th>
 				<td>{{this.invoice.person.address}}</td>
 			</tr>
 			<tr>
-				<th>Postinumero:</th>
+				<th>{{'Zipcode' | translate}}:</th>
 				<td>{{this.invoice.person.zipcode}}</td>
 			</tr>
 			<tr>
-				<th>Kaupunki:</th>
+				<th>{{'City' | translate}}:</th>
 				<td>{{this.invoice.person.city}}</td>
 			</tr>
 		</table>
@@ -49,14 +52,14 @@
 </div>
 <div class="row">
 	<section class="col">
-		<h2>
-			Yksityiskohdat
+		<h2 translate>
+			Details
 		</h2>
 		<table class="table">
 			<tr>
-				<th>Kuvaus</th>
-				<th>Hinta</th>
-				<th>Etäisyys</th>
+				<th translate>Description</th>
+				<th translate>Price</th>
+				<th translate>Distance</th>
 			</tr>
 			<tr *ngFor="let detail of this.invoice.details">
 				<td>{{detail.description}}</td>
@@ -68,9 +71,14 @@
 </div>
 <div class="row">
 	<div *ngIf="this.invoice.id > 0" class="col">
-		<a [routerLink]="['/facturen/', this.invoice.id - 1]">&lt; Edellinen</a>
+		<a [routerLink]="['/facturen/', this.invoice.id - 1]">
+			&lt; {{'Previous' | translate}}
+		</a>
 	</div>
-	<div *ngIf="this.invoice.id + 2 <= this.invoiceService.getAll().length" class="col"  style="text-align: right">
-		<a [routerLink]="['/facturen/', this.invoice.id + 1]">Seuraava &gt;</a>
+	<div *ngIf="this.invoice.id + 2 <= this.invoiceService.getAll().length"
+		 class="col" style="text-align: right">
+		<a [routerLink]="['/facturen/', this.invoice.id + 1]">
+			{{'Next' | translate}} &gt;
+		</a>
 	</div>
 </div>

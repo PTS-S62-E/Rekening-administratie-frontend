@@ -6,6 +6,7 @@
 	"Due date": "Due date",
 	"Status": "Status",
 	"Account Administration": "Account Administration",
+	"General": "General",
 	"Email": "Email",
 	"Password": "Password",
 	"Back": "Back",
@@ -17,5 +18,9 @@
 	"Address": "Address",
 	"Zipcode": "Zipcode",
 	"City": "City",
-	"Distance": "Distanc"
+	"Distance": "Distance",
+	"Description": "Description",
+	"Invalid username/password": "Invalid username/password.",
+	"No username/password": "No username/password.",
+	"Login": "Login"
 }

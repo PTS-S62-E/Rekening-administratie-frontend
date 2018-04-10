@@ -8,7 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class InvoicePageComponent implements OnInit {
 
-	constructor(private translate: TranslateService) {
+	constructor(translate: TranslateService) {
 	}
 
 	ngOnInit() {

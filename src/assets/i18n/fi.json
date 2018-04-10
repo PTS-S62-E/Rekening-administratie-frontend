@@ -6,6 +6,7 @@
 	"Due date": "Eräpäivä",
 	"Status": "Status",
 	"Account Administration": "Tilinhallinta",
+	"General": "Yleinen",
 	"Email": "Emali",
 	"Password": "Salasana",
 	"Back": "Takaisin",
@@ -17,5 +18,9 @@
 	"Address": "Osoite",
 	"Zipcode": "Postinumero",
 	"City": "Kaupunki",
-	"Distance": "Etäisyys"
+	"Distance": "Etäisyys",
+	"Description": "Kuvaus",
+	"Invalid username/password": "Virheellinen emali / salasana.",
+	"No username/password": "Ei emali / salasana.",
+	"Login": "Login"
 }
