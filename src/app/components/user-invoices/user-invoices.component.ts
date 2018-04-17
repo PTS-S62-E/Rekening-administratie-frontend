@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Status} from "../../models/status.enum";
-import {Invoice} from "../../models/invoice.model";
-import {Person} from "../../models/person.model";
-import {InvoiceService} from "../../services/invoice.service";
+import {Status} from '../../models/status.enum';
+import {Invoice} from '../../models/invoice.model';
+import {Owner} from '../../models/owner.model';
+import {InvoiceService} from '../../services/invoice.service';
 
 @Component({
 	selector: 'app-user-invoices',

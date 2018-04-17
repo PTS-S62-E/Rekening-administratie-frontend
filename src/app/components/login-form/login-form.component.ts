@@ -25,7 +25,8 @@ export class LoginFormComponent implements OnInit {
 			this.auth.authenticate(username, password)
 				.then(
 					res => {
-						this.auth.setAuthKey(res.headers.get('Auth'));
+						console.log(res);
+						this.auth.setAuthKey(res.token);
 						this.router.navigate(['']);
 					}
 				)
@@ -35,9 +36,10 @@ export class LoginFormComponent implements OnInit {
 						this.invalidInput = true;
 					}
 				);
-		}
-		else {
+		} else {
 			this.noInput = true;
 		}
+
+		return false;
 	}
 }

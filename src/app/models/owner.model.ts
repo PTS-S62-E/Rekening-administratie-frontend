@@ -1,8 +1,4 @@
-/**
- * Created by sander on 25/03/2018.
- */
-
-export class Person {
+export class Owner {
 	public id: number;
 	public name: string;
 	public address: string;

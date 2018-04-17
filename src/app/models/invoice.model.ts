@@ -1,20 +1,20 @@
-import {Person} from './person.model';
 import {Status} from './status.enum';
 import {InvoiceDetails} from './invoice-details.model';
+import {Owner} from './owner.model';
 /**
  * Created by sander on 25/03/2018.
  */
 
 export class Invoice {
 	public id: number;
-	public person: Person;
+	public person: Owner;
 	public sendOn: Date;
 	public due: Date;
 	public paid: boolean;
 	public details: InvoiceDetails[];
 
 	constructor(id: number,
-				person: Person,
+				person: Owner,
 				sendOn: Date,
 				due: Date,
 				paid: boolean,

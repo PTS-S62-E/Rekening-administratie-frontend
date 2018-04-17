@@ -67,7 +67,6 @@ const appRoutes: Routes = [
 		RouterModule.forRoot(
 			appRoutes
 		),
-		HttpModule,
 		AngularFontAwesomeModule,
 		HttpClientModule,
 		TranslateModule.forRoot({

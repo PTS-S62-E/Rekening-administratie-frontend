@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Invoice} from '../models/invoice.model';
 import {environment} from '../../environments/environment';
-import {Observable} from 'rxjs/Observable';
-import {Http} from '@angular/http';
-import {Person} from '../models/person.model';
-import {Status} from '../models/status.enum';
+import {Owner} from '../models/owner.model';
 import {TransLocation} from '../models/trans-location.model';
 import {InvoiceDetails} from '../models/invoice-details.model';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class InvoiceService {
@@ -15,11 +13,11 @@ export class InvoiceService {
 
 	private baseUrl = environment.apiUrl;
 
-	constructor(private http: Http) {
+	constructor(private http: HttpClient) {
 		const locationPoints: TransLocation[] = [];
 		const details: InvoiceDetails[] = [];
 
-		const person = new Person(
+		const person = new Owner(
 			1,
 			'Sander Geraedts',
 			'Gebr. de Koninglaan 17',

@@ -1,35 +1,37 @@
 import {Injectable} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
-import {Http} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
 
-	private baseUrl = environment.apiUrl;
+	private baseUrl = environment.apiUrl + 'accounts/';
 
-	constructor(private http: Http,
+	constructor(private http: HttpClient,
 				private cookieService: CookieService,
 				private router: Router) {
 	}
 
 	// Todo: Connect with the proper backend
-	authenticate(username: string,
-				password: string): Promise<{ headers: Headers }> {
+	authenticate(email: string, password: string): any {
 
 		const headers = this.getHeaders();
-		headers.append('content-type',
-			'application/x-www-form-urlencoded');
 
-		const hash = btoa(username + password);
+		const payload = {
+			'email': email,
+			'password': password
+		};
 
-		return new Promise(resolve => {
-			headers.append('Auth', hash);
+		console.log(this.baseUrl + 'login');
 
-			const object = {headers: headers};
-			resolve(object);
-		});
+
+		return this.http.post(
+			this.baseUrl + 'login',
+			payload,
+			{headers: headers}
+		).toPromise();
 	}
 
 	isAuthenticated(): boolean {
@@ -47,7 +49,7 @@ export class AuthService {
 	}
 
 	private getHeaders() {
-		const headers = new Headers();
+		const headers = new HttpHeaders();
 		headers.append('Accept', 'application/json');
 		return headers;
 	}
