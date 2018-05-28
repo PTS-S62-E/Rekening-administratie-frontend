@@ -11,18 +11,43 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class InvoiceService {
-	private baseUrl = environment.apiUrl + 'invoices';
+	private baseUrl = environment.apiUrl + 'invoices/';
 	private invoices: Invoice[];
 
 	constructor(private http: HttpClient, private auth: AuthService) {
 	}
 
-	get(index: number): Invoice {
-		return this.invoices.find(i => i.id === index);
+	get(index: number): Observable<Invoice> {
+		if (this.auth.isAuthenticated()) {
+			return this.http.get<Invoice>(
+				this.baseUrl + index,
+				{headers: this.getHeaders()}
+			).map(invoice => {
+				const sentDate = new Date(invoice['invoiceDate']);
+
+				// Flipping JavaScript...
+				const dueDate = new Date(new Date(sentDate)
+					.setMonth(sentDate.getMonth() + 2));
+
+				const result = new Invoice(
+					invoice['invoiceNumber'],
+					new Owner(0, 'todo', 'todo', 'todo', 'todo'),
+					sentDate,
+					dueDate,
+					invoice['paymentStatus'],
+					invoice['invoiceDetails']
+				);
+
+				return result;
+			});
+		} else {
+			return null;
+		}
 	}
 
 	getAll(): Observable<Invoice[]> {
-		if (this.auth.isAuthenticated()) {
+		if (this.auth.isAuthenticated()
+		) {
 			return this.http.get<Invoice[]>(
 				this.baseUrl,
 				{headers: this.getHeaders()}
@@ -50,7 +75,8 @@ export class InvoiceService {
 				this.invoices = results;
 				return results;
 			});
-		} else {
+		}
+		else {
 			return null;
 		}
 	}

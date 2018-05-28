@@ -10,7 +10,6 @@ import {Invoice} from '../../models/invoice.model';
 })
 export class UserInvoiceComponent implements OnInit {
 	public invoice: Invoice;
-	public invoices: Invoice[];
 
 	public loaded: boolean;
 
@@ -19,26 +18,19 @@ export class UserInvoiceComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.loaded = false;
-
-		this.invoiceService.getAll().subscribe(invoices => {
-				this.invoices = invoices;
-
-				console.log(invoices);
-
-				this.route.params.subscribe(params => {
-						this.invoice = this.invoiceService.get(params['id']);
-						console.log(this.invoice);
-					}
-				);
-
-				this.loaded = true;
+		this.route.params.subscribe(params => {
+				this.invoiceService.get(params['id'])
+					.subscribe(invoice => {
+						this.invoice = invoice;
+						this.loaded = true;
+					});
 			}
 		);
 	}
 
-	getIndex(): number {
-		return this.invoices.findIndex(i => i.id === this.invoice.id);
-	}
+	public getPrice(price): string {
+		const result = price / 100;
 
+		return result.toFixed(2).toString().replace('.', ',');
+	}
 }
