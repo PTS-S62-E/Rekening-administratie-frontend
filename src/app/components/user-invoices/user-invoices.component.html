@@ -1,17 +1,16 @@
 <table class="table">
 	<thead>
 	<tr>
-		<th scope="col">Persoon</th>
-		<th scope="col">Prijs</th>
-		<th scope="col">Betalen voor</th>
-		<th scope="col">Status</th>
+		<th scope="col" translate>Month</th>
+		<th scope="col" translate>Price</th>
+		<th scope="col" translate>Due date</th>
+		<th scope="col" translate>Status</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr *ngFor="let invoice of invoices">
-		<th scope="row"><a [routerLink]="['/facturen/', invoice.id]">{{invoice.person.name}}</a>
-		</th>
-		<td>€ {{invoice.price.toFixed(2).toString().replace(".", ",")}}</td>
+		<td><a [routerLink]="['/facturen/', invoice.id]">{{invoice.getName() | translate}}</a></td>
+		<td>€ {{invoice.getPrice()}}</td>
 		<td> {{invoice.due.getDate()}}-{{invoice.due.getMonth() +
 			1}}-{{invoice.due.getFullYear()}}
 		</td>

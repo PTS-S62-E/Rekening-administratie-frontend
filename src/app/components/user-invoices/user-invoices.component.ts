@@ -10,12 +10,14 @@ import {InvoiceService} from '../../services/invoice.service';
 	styleUrls: ['./user-invoices.component.css']
 })
 export class UserInvoicesComponent implements OnInit {
-	ngOnInit(): void {
-	}
-
 	invoices: Invoice[];
 
-	constructor(private invoiceService: InvoiceService) {
-		this.invoices = this.invoiceService.getAll();
+	constructor(public invoiceService: InvoiceService) {
+	}
+
+	ngOnInit(): void {
+		this.invoiceService.getAll().subscribe(invoices =>
+			this.invoices = invoices
+		);
 	}
 }

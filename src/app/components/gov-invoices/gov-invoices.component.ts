@@ -13,10 +13,12 @@ export class GovInvoicesComponent implements OnInit {
 	invoices: Invoice[];
 
 	constructor(private invoiceService: InvoiceService) {
-		this.invoices = this.invoiceService.getAll();
 	}
 
 	ngOnInit() {
+		this.invoiceService.getAll().subscribe(invoices =>
+			this.invoices = invoices
+		);
 	}
 
 }

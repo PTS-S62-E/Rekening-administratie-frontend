@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
 	selector: 'app-header',
@@ -10,7 +11,8 @@ import {TranslateService} from "@ngx-translate/core";
 export class HeaderComponent implements OnInit {
 
 	constructor(private auth: AuthService,
-				private translate: TranslateService) {
+				private translate: TranslateService,
+				private cookies: CookieService) {
 	}
 
 	ngOnInit() {
@@ -26,5 +28,6 @@ export class HeaderComponent implements OnInit {
 
 	switchLanguage(language: string) {
 		this.translate.use(language);
+		this.cookies.set('lang', language);
 	}
 }

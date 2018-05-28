@@ -51,4 +51,26 @@ export class Invoice {
 
 		return price.toFixed(2).toString().replace('.', ',');
 	}
+
+	public getName() {
+		const monthNames = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		];
+
+		console.log(this.sendOn);
+
+		return monthNames[this.sendOn.getMonth()];
+
+	}
 }

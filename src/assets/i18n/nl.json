@@ -22,5 +22,8 @@
 	"Description": "Beschrijving",
 	"Invalid username/password": "Ongeldige gebruikersnaam/wachtwoord",
 	"No username/password": "Geen gebruikersnaam/wachtwoord",
-	"Login": "Login"
+	"Login": "Login",
+	"Register": "Registreren",
+	"Finland": "Finland",
+	"Country": "Land"
 }

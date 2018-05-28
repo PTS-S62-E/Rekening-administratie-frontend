@@ -24,9 +24,6 @@ export class AuthService {
 			'password': password
 		};
 
-		console.log(this.baseUrl + 'login');
-
-
 		return this.http.post(
 			this.baseUrl + 'login',
 			payload,
@@ -34,8 +31,38 @@ export class AuthService {
 		).toPromise();
 	}
 
+	register(name: string,
+			 email: string,
+			 password: string,
+			 address: string,
+			 postalcode: string,
+			 city: string,
+			 country: string): any {
+		const headers = this.getHeaders();
+
+		const payload = {
+			'name': name,
+			'email': email,
+			'password': password,
+			'address': address,
+			'postalCode': postalcode,
+			'city': city,
+			'country': country
+		};
+
+		return this.http.post(
+			this.baseUrl,
+			payload,
+			{headers: headers}
+		).toPromise();
+	}
+
 	isAuthenticated(): boolean {
 		return !!this.cookieService.get('Auth');
+	}
+
+	getAuthKey(): string {
+		return this.cookieService.get('Auth');
 	}
 
 	setAuthKey(key: string) {
@@ -48,9 +75,13 @@ export class AuthService {
 		this.router.navigate(['login']);
 	}
 
-	private getHeaders() {
-		const headers = new HttpHeaders();
-		headers.append('Accept', 'application/json');
+
+
+	private getHeaders(): HttpHeaders {
+		const headers = new HttpHeaders({
+			'Accept': 'application/json'
+		});
+
 		return headers;
 	}
 }

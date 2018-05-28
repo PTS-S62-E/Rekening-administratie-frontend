@@ -7,8 +7,10 @@ import {TranslateService} from "@ngx-translate/core";
 	styleUrls: ['./invoice-page.component.css']
 })
 export class InvoicePageComponent implements OnInit {
+	public gov: boolean;
 
 	constructor(translate: TranslateService) {
+		this.gov = false;
 	}
 
 	ngOnInit() {

@@ -4,83 +4,63 @@ import {environment} from '../../environments/environment';
 import {Owner} from '../models/owner.model';
 import {TransLocation} from '../models/trans-location.model';
 import {InvoiceDetails} from '../models/invoice-details.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthService} from './auth.service';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class InvoiceService {
+	private baseUrl = environment.apiUrl + 'invoices';
+	private invoices: Invoice[];
 
-	public invoices: Invoice[] = [];
+	constructor(private http: HttpClient, private auth: AuthService) {
+	}
 
-	private baseUrl = environment.apiUrl;
+	get(index: number): Invoice {
+		return this.invoices.find(i => i.id === index);
+	}
 
-	constructor(private http: HttpClient) {
-		const locationPoints: TransLocation[] = [];
-		const details: InvoiceDetails[] = [];
+	getAll(): Observable<Invoice[]> {
+		if (this.auth.isAuthenticated()) {
+			return this.http.get<Invoice[]>(
+				this.baseUrl,
+				{headers: this.getHeaders()}
+			).map(result => {
+				console.log(result);
+				const results = [];
 
-		const person = new Owner(
-			1,
-			'Sander Geraedts',
-			'Gebr. de Koninglaan 17',
-			'5674XH',
-			'Best'
-		);
+				for (const invoice of result) {
+					const sentDate = new Date(invoice['invoiceDate']);
 
+					// Flipping JavaScript...
+					const dueDate = new Date(new Date(sentDate)
+						.setMonth(sentDate.getMonth() + 2));
 
-		for (let i = 0; i < 10; i++) {
-			const locationPoint = new TransLocation(
-				Math.random() * 100,
-				Math.random() * 100,
-				'12-04-2018',
-				Math.round(Math.random() * 1000) + '-' +
-				Math.round(Math.random() * 1000) + '-' +
-				Math.round(Math.random() * 1000),
-				'FI'
-			);
+					results.push(new Invoice(
+						invoice['invoiceNumber'],
+						new Owner(0, 'todo', 'todo', 'todo', 'todo'),
+						sentDate,
+						dueDate,
+						invoice['paymentStatus'],
+						invoice['invoiceDetails']
+					));
+				}
 
-			locationPoints.push(locationPoint);
-		}
-
-		for (let i = 0; i < 5; i++) {
-			const detail = new InvoiceDetails(
-				locationPoints,
-				'This is a test description',
-				Math.round(Math.random() * 10000),
-				Math.round(Math.random() * 10000)
-			);
-
-			details.push(detail);
-		}
-
-		const now = new Date();
-
-		for (let i = 0; i < 5; i++) {
-			const invoice = new Invoice(
-				i,
-				person,
-				new Date(now.getTime() - 1000 * 60 * 60 * 48),
-				(Math.random() <= 0.5) ?
-					new Date(now.getTime() + 1000 * 60 * 60 * 24) :
-					new Date(now.getTime() - 1000 * 60 * 60 * 24),
-				Math.random() <= 0.5,
-				details
-			);
-
-			this.invoices.push(invoice);
+				this.invoices = results;
+				return results;
+			});
+		} else {
+			return null;
 		}
 	}
 
-	getAll(): Invoice[] {
-		return this.invoices;
-	}
+	private getHeaders(): HttpHeaders {
+		const headers = new HttpHeaders({
+			'Accept': 'application/json',
+			'Authorization': this.auth.getAuthKey()
+		});
 
-	getByIndex(index: number): Invoice {
-		return this.invoices[index];
-	}
-
-	private getHeaders(): Headers {
-		const headers = new Headers();
-		headers.append('Accept', 'application/json');
-		// headers.append('Auth', this.cookie.get('Auth'));
 		return headers;
 	}
 

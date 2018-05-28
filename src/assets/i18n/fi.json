@@ -22,5 +22,8 @@
 	"Description": "Kuvaus",
 	"Invalid username/password": "Virheellinen emali / salasana.",
 	"No username/password": "Ei emali / salasana.",
-	"Login": "Login"
+	"Login": "Login",
+	"Register": "Ilmoittautua",
+	"Finland": "Suomi",
+	"Country": "Maa"
 }

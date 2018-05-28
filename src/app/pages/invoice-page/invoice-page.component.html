@@ -1,2 +1,7 @@
-<h1 translate>Invoice</h1>
-<app-gov-invoice></app-gov-invoice>
+<div class="row">
+	<div class="col-md">
+		<h1 translate>Invoice</h1>
+		<app-gov-invoice *ngIf="this.gov"></app-gov-invoice>
+		<app-user-invoice *ngIf="!this.gov"></app-user-invoice>
+	</div>
+</div>

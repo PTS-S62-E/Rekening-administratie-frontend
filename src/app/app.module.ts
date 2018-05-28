@@ -19,18 +19,26 @@ import {StatusIconComponent} from './components/status-icon/status-icon.componen
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {InvoicePageComponent} from './pages/invoice-page/invoice-page.component';
 import {InvoiceService} from './services/invoice.service';
-import { GovInvoiceComponent } from './components/gov-invoice/gov-invoice.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {GovInvoiceComponent} from './components/gov-invoice/gov-invoice.component';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {
 	TranslateModule, TranslateLoader,
 	TranslateService
 } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {RegisterPageComponent} from './pages/register-page/register-page.component';
+import {RegisterFormComponent} from './components/register-form/register-form.component';
+import {UserInvoiceComponent} from './components/user-invoice/user-invoice.component';
+import { CarsPageComponent } from './pages/cars-page/cars-page.component';
 
 const appRoutes: Routes = [
 	{
 		path: 'login',
 		component: LoginPageComponent
+	},
+	{
+		path: 'register',
+		component: RegisterPageComponent
 	},
 	{
 		path: '',
@@ -61,6 +69,10 @@ const appRoutes: Routes = [
 		StatusIconComponent,
 		InvoicePageComponent,
 		GovInvoiceComponent,
+		RegisterPageComponent,
+		RegisterFormComponent,
+		UserInvoiceComponent,
+		CarsPageComponent,
 	],
 	imports: [
 		BrowserModule,

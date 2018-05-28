@@ -10,15 +10,23 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class GovInvoiceComponent implements OnInit {
 	invoice: Invoice;
+	invoices: Invoice[];
 
 	constructor(public invoiceService: InvoiceService,
 				private route: ActivatedRoute) {
 	}
 
 	ngOnInit() {
+		this.invoiceService.getAll().subscribe(invoices =>
+			this.invoices = invoices
+		);
+
 		this.route.params.subscribe(params =>
-			this.invoice = this.invoiceService.getByIndex(params['id'])
+			this.invoice = this.invoiceService.get(params['id'])
 		);
 	}
 
+	getIndex(): number {
+		return this.invoices.findIndex(i => i.id === this.invoice.id);
+	}
 }
