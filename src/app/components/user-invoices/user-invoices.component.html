@@ -9,7 +9,8 @@
 	</thead>
 	<tbody>
 	<tr *ngFor="let invoice of invoices">
-		<td><a [routerLink]="['/facturen/', invoice.id]">{{invoice.getName() | translate}}</a></td>
+		<td><a [routerLink]="['/facturen/', invoice.id]">{{invoice.getName() |
+			translate}}</a></td>
 		<td>€ {{invoice.getPrice()}}</td>
 		<td> {{invoice.due.getDate()}}-{{invoice.due.getMonth() +
 			1}}-{{invoice.due.getFullYear()}}

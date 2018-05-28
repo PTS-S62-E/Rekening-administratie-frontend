@@ -46,8 +46,7 @@ export class InvoiceService {
 	}
 
 	getAll(): Observable<Invoice[]> {
-		if (this.auth.isAuthenticated()
-		) {
+		if (this.auth.isAuthenticated()) {
 			return this.http.get<Invoice[]>(
 				this.baseUrl,
 				{headers: this.getHeaders()}
@@ -75,10 +74,21 @@ export class InvoiceService {
 				this.invoices = results;
 				return results;
 			});
-		}
-		else {
+		} else {
 			return null;
 		}
+	}
+
+	public pay(index: number) {
+		const headers = this.getHeaders();
+
+		return this.http.post(
+			this.baseUrl + 'pay',
+			{
+				invoiceNumber: index
+			},
+			{headers: headers}
+		).toPromise();
 	}
 
 	private getHeaders(): HttpHeaders {

@@ -28,6 +28,14 @@ export class UserInvoiceComponent implements OnInit {
 		);
 	}
 
+	public payInvoice() {
+		this.invoiceService.pay(this.invoice.id).then(
+			res => {
+				console.log(res);
+			}
+		);
+	}
+
 	public getPrice(price): string {
 		const result = price / 100;
 
