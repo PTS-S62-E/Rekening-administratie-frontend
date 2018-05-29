@@ -30,6 +30,8 @@ import {RegisterPageComponent} from './pages/register-page/register-page.compone
 import {RegisterFormComponent} from './components/register-form/register-form.component';
 import {UserInvoiceComponent} from './components/user-invoice/user-invoice.component';
 import { CarsPageComponent } from './pages/cars-page/cars-page.component';
+import {OwnershipService} from "./services/ownership.service";
+import { OwnershipComponent } from './components/ownership/ownership.component';
 
 const appRoutes: Routes = [
 	{
@@ -55,6 +57,11 @@ const appRoutes: Routes = [
 		component: InvoicePageComponent,
 		canActivate: [AuthGuardService]
 	},
+	{
+		path: 'cars',
+		component: CarsPageComponent,
+		canActivate: [AuthGuardService]
+	}
 ];
 
 @NgModule({
@@ -73,6 +80,7 @@ const appRoutes: Routes = [
 		RegisterFormComponent,
 		UserInvoiceComponent,
 		CarsPageComponent,
+		OwnershipComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -93,7 +101,8 @@ const appRoutes: Routes = [
 		AuthGuardService,
 		AuthService,
 		CookieService,
-		InvoiceService
+		InvoiceService,
+		OwnershipService
 	],
 	bootstrap: [AppComponent]
 })

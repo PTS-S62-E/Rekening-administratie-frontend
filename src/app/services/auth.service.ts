@@ -70,7 +70,7 @@ export class AuthService {
 	}
 
 	logOut() {
-		this.cookieService.delete('Auth');
+		this.cookieService.deleteAll('Auth');
 
 		this.router.navigate(['login']);
 	}

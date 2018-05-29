@@ -2,7 +2,7 @@
 	<div class="col">
 		<a [routerLink]="['/facturen/']">&lt; {{'Back' | translate}}</a>
 	</div>
-	<div class="col">
+	<div class="col" *ngIf="!this.invoice?.paid">
 		<button class="btn btn-primary pull-right" (click)="payInvoice()" translate>Pay Invoice</button>
 	</div>
 </div>
@@ -67,7 +67,7 @@
 			<tr *ngFor="let detail of this.invoice.details">
 				<td>{{detail.description}}</td>
 				<td>€ {{getPrice(detail.price)}}</td>
-				<td>{{detail.distance}}km</td>
+				<td>{{detail.distance / 1000}}km</td>
 			</tr>
 		</table>
 	</section>

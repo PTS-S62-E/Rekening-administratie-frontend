@@ -16,9 +16,9 @@ export class GovInvoicesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.invoiceService.getAll().subscribe(invoices =>
-			this.invoices = invoices
-		);
+		// this.invoiceService.getAll().subscribe(invoices =>
+		// 	this.invoices = invoices
+		// );
 	}
 
 }

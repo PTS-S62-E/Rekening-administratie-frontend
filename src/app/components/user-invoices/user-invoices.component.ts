@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Status} from '../../models/status.enum';
-import {Invoice} from '../../models/invoice.model';
-import {Owner} from '../../models/owner.model';
 import {InvoiceService} from '../../services/invoice.service';
+import {InvoiceThin} from '../../models/invoice-thin.model';
 
 @Component({
 	selector: 'app-user-invoices',
@@ -10,7 +8,7 @@ import {InvoiceService} from '../../services/invoice.service';
 	styleUrls: ['./user-invoices.component.css']
 })
 export class UserInvoicesComponent implements OnInit {
-	invoices: Invoice[];
+	invoices: InvoiceThin[];
 
 	constructor(public invoiceService: InvoiceService) {
 	}

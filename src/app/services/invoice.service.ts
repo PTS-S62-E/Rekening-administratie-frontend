@@ -2,17 +2,15 @@ import {Injectable} from '@angular/core';
 import {Invoice} from '../models/invoice.model';
 import {environment} from '../../environments/environment';
 import {Owner} from '../models/owner.model';
-import {TransLocation} from '../models/trans-location.model';
-import {InvoiceDetails} from '../models/invoice-details.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {InvoiceThin} from '../models/invoice-thin.model';
 
 @Injectable()
 export class InvoiceService {
 	private baseUrl = environment.apiUrl + 'invoices/';
-	private invoices: Invoice[];
 
 	constructor(private http: HttpClient, private auth: AuthService) {
 	}
@@ -45,13 +43,12 @@ export class InvoiceService {
 		}
 	}
 
-	getAll(): Observable<Invoice[]> {
+	getAll(): Observable<InvoiceThin[]> {
 		if (this.auth.isAuthenticated()) {
-			return this.http.get<Invoice[]>(
+			return this.http.get<InvoiceThin[]>(
 				this.baseUrl,
 				{headers: this.getHeaders()}
 			).map(result => {
-				console.log(result);
 				const results = [];
 
 				for (const invoice of result) {
@@ -59,19 +56,17 @@ export class InvoiceService {
 
 					// Flipping JavaScript...
 					const dueDate = new Date(new Date(sentDate)
-						.setMonth(sentDate.getMonth() + 2));
+						.setMonth(sentDate.getMonth() + 1));
 
-					results.push(new Invoice(
-						invoice['invoiceNumber'],
-						new Owner(0, 'todo', 'todo', 'todo', 'todo'),
+					results.push(new InvoiceThin(
+						invoice['id'],
 						sentDate,
 						dueDate,
 						invoice['paymentStatus'],
-						invoice['invoiceDetails']
+						invoice['price']
 					));
 				}
 
-				this.invoices = results;
 				return results;
 			});
 		} else {
