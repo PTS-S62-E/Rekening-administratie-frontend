@@ -5,5 +5,6 @@
 
 export const environment = {
 	production: false,
-	apiUrl: 'http://192.168.24.100:8082/rekening-administratie/api/'
+	administrationApiUrl: 'http://192.168.24.100:8082/rekening-administratie/api/',
+	registrationApiUrl: 'http://192.168.24.100:8082/registratie-verplaatsing/api/'
 };

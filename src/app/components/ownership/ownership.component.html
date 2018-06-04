@@ -1,3 +1,71 @@
-<p>
-  ownership works!
-</p>
+<section>
+	<table class="table">
+		<thead>
+		<tr>
+			<th scope="col" translate>License Plate</th>
+			<th scope="col" translate>Brand</th>
+			<th scope="col" translate>Type</th>
+			<th scope="col" translate>Bought on</th>
+			<th scope="col" translate>Sold on</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let ownership of ownerships">
+			<td>
+				<a [routerLink]="['/cars/', ownership.vehicle.id]">
+					{{ownership.vehicle.licensePlate | translate}}
+				</a>
+			</td>
+			<td>{{ownership.vehicle.brand}}</td>
+			<td>{{ownership.vehicle.type}}</td>
+			<td>{{ownership.fromDate}}</td>
+			<td>{{'Currently in possession'}}
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</section>
+<section>
+	<h2>Add New car</h2>
+	<form>
+		<div class="form-group">
+			<label for="licensePlate" translate>License Plate</label>
+			<input type="text"
+				   class="form-control"
+				   id="licensePlate"
+				   #licensePlate>
+		</div>
+		<div class="btn btn-primary"
+			 (click)="onLicenseplateSubmit(licensePlate.value)">
+			Add
+		</div>
+	</form>
+</section>
+<div class="modal" id="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Vehicle</h5>
+				<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Is this your vehicle?</p>
+				<p><b>Brand: </b>{{vehicle.brand}}</p>
+				<p><b>Type: </b>{{vehicle.type}}</p>
+				<p><b>Category: </b>{{vehicle.category}}</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button"
+						class="btn btn-primary"
+						(click)="onAddOwnership()">Yes
+				</button>
+				<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">No
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

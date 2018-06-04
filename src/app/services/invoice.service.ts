@@ -10,7 +10,7 @@ import {InvoiceThin} from '../models/invoice-thin.model';
 
 @Injectable()
 export class InvoiceService {
-	private baseUrl = environment.apiUrl + 'invoices/';
+	private baseUrl = environment.administrationApiUrl + 'invoices/';
 
 	constructor(private http: HttpClient, private auth: AuthService) {
 	}
