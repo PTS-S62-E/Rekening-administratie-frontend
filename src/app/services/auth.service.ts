@@ -3,6 +3,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Owner} from "../models/owner.model";
 
 @Injectable()
 export class AuthService {
@@ -69,12 +70,19 @@ export class AuthService {
 		this.cookieService.set('Auth', key);
 	}
 
+	getOwner(): Owner {
+		return JSON.parse(this.cookieService.get('Owner'));
+	}
+
+	setOwner(owner: Owner) {
+		this.cookieService.set('Owner', JSON.stringify(owner));
+	}
+
 	logOut() {
 		this.cookieService.deleteAll('Auth');
 
 		this.router.navigate(['login']);
 	}
-
 
 
 	private getHeaders(): HttpHeaders {
