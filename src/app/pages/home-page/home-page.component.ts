@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
 	selector: 'app-home-page',
@@ -8,8 +9,8 @@ import {Component, OnInit} from '@angular/core';
 export class HomePageComponent implements OnInit {
 	public gov: boolean;
 
-	constructor() {
-		this.gov = false;
+	constructor(private authService: AuthService) {
+		this.gov = this.authService.gov;
 	}
 
 	ngOnInit() {

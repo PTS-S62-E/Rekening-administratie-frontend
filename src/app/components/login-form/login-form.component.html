@@ -18,8 +18,21 @@
 			   class="form-control" #password>
 	</div>
 	<div class="form-group">
-		<button type="submit" class="btn btn-primary"
-				(click)="onLogin(username.value, password.value)" translate>
+		<div class="custom-control custom-checkbox">
+			<input type="checkbox"
+				   class="custom-control-input"
+				   id="gov"
+				   #gov>
+			<label class="custom-control-label" for="gov">
+				Are you a government employee?
+			</label>
+		</div>
+	</div>
+	<div class="form-group">
+		<button type="submit"
+				class="btn btn-primary"
+				(click)="onLogin(username.value, password.value, gov.checked)"
+				translate>
 			Login
 		</button>
 		<hr/>

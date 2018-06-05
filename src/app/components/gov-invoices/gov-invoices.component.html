@@ -9,14 +9,17 @@
 	</thead>
 	<tbody>
 	<tr *ngFor="let invoice of invoices">
-		<th scope="row"><a [routerLink]="['/facturen/', invoice.id]">{{invoice.person.name}}</a>
+		<th scope="row">
+			<a [routerLink]="['/facturen/', invoice?.id]">
+				{{invoice.name}}
+			</a>
 		</th>
-		<td>€ {{invoice.getPrice()}}</td>
-		<td> {{invoice.due.getDate()}}-{{invoice.due.getMonth() +
-			1}}-{{invoice.due.getFullYear()}}
+		<td>€ {{invoice?.getPrice()}}</td>
+		<td> {{invoice?.due.getDate()}}-{{invoice?.due.getMonth() +
+			1}}-{{invoice?.due.getFullYear()}}
 		</td>
 		<td>
-			<app-status-icon [status]="invoice.getStatus()"></app-status-icon>
+			<app-status-icon [status]="invoice?.getStatus()"></app-status-icon>
 		</td>
 	</tr>
 	</tbody>

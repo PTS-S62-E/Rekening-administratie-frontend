@@ -12,7 +12,6 @@ import {Owner} from '../../models/owner.model';
 })
 export class UserInvoiceComponent implements OnInit {
 	public invoice: Invoice;
-	public account: Owner;
 
 	public loaded: boolean;
 
@@ -30,8 +29,6 @@ export class UserInvoiceComponent implements OnInit {
 					});
 			}
 		);
-
-		this.account = this.authService.getOwner();
 	}
 
 	public payInvoice() {

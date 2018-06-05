@@ -3,12 +3,12 @@ import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Owner} from "../models/owner.model";
 
 @Injectable()
 export class AuthService {
 
 	private baseUrl = environment.administrationApiUrl + 'accounts/';
+	public gov = false;
 
 	constructor(private http: HttpClient,
 				private cookieService: CookieService,
@@ -16,7 +16,8 @@ export class AuthService {
 	}
 
 	// Todo: Connect with the proper backend
-	authenticate(email: string, password: string): any {
+	authenticate(email: string, password: string, gov: boolean): any {
+		this.gov = gov;
 
 		const headers = this.getHeaders();
 
@@ -68,14 +69,6 @@ export class AuthService {
 
 	setAuthKey(key: string) {
 		this.cookieService.set('Auth', key);
-	}
-
-	getOwner(): Owner {
-		return JSON.parse(this.cookieService.get('Owner'));
-	}
-
-	setOwner(owner: Owner) {
-		this.cookieService.set('Owner', JSON.stringify(owner));
 	}
 
 	logOut() {

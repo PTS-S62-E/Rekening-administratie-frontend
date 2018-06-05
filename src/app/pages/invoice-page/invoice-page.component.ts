@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from '../../services/auth.service';
 
 @Component({
 	selector: 'app-invoice-page',
@@ -9,8 +9,8 @@ import {TranslateService} from "@ngx-translate/core";
 export class InvoicePageComponent implements OnInit {
 	public gov: boolean;
 
-	constructor(translate: TranslateService) {
-		this.gov = false;
+	constructor(private authService: AuthService) {
+		this.gov = this.authService.gov;
 	}
 
 	ngOnInit() {

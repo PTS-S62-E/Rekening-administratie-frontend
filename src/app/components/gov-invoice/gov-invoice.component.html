@@ -3,7 +3,7 @@
 		<a [routerLink]="['/facturen/']">&lt; {{'Back' | translate}}</a>
 	</div>
 </div>
-<div class="row">
+<div class="row" *ngIf="loaded">
 	<section class="col-8">
 		<h2>{{'General' | translate}}:</h2>
 		<table class="table">
@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<th>{{'Zipcode' | translate}}:</th>
-				<td>{{this.invoice.person.zipcode}}</td>
+				<td>{{this.invoice.person.postalCode}}</td>
 			</tr>
 			<tr>
 				<th>{{'City' | translate}}:</th>
@@ -50,7 +50,7 @@
 		</table>
 	</section>
 </div>
-<div class="row">
+<div class="row" *ngIf="loaded">
 	<section class="col">
 		<h2 translate>
 			Details
@@ -63,22 +63,9 @@
 			</tr>
 			<tr *ngFor="let detail of this.invoice.details">
 				<td>{{detail.description}}</td>
-				<td>€ {{detail.getPrice()}}</td>
-				<td>{{detail.distance}}km</td>
+				<td>€ {{getPrice(detail.price)}}</td>
+				<td>{{detail.distance / 1000}}km</td>
 			</tr>
 		</table>
 	</section>
-</div>
-<div class="row">
-	<div *ngIf="this.getIndex() > 0" class="col">
-		<a [routerLink]="['/facturen/', this.invoice.id - 1]">
-			&lt; {{'Previous' | translate}}
-		</a>
-	</div>
-	<div *ngIf="this.getIndex() < this.invoices.length - 1"
-		 class="col" style="text-align: right">
-		<a [routerLink]="['/facturen/', this.invoice.id + 1]">
-			{{'Next' | translate}} &gt;
-		</a>
-	</div>
 </div>

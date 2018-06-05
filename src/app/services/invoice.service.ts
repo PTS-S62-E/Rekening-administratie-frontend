@@ -29,7 +29,13 @@ export class InvoiceService {
 
 				const result = new Invoice(
 					invoice['invoiceNumber'],
-					new Owner(0, 'todo', 'todo', 'todo', 'todo'),
+					new Owner(
+						invoice['owner']['id'],
+						invoice['owner']['name'],
+						invoice['owner']['address'],
+						invoice['owner']['postalCode'],
+						invoice['owner']['city']
+					),
 					sentDate,
 					dueDate,
 					invoice['paymentStatus'],
@@ -63,7 +69,8 @@ export class InvoiceService {
 						sentDate,
 						dueDate,
 						invoice['paymentStatus'],
-						invoice['price']
+						invoice['price'],
+						invoice['ownerName']
 					));
 				}
 

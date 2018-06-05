@@ -18,16 +18,15 @@ export class LoginFormComponent implements OnInit {
 	}
 
 
-	onLogin(username: string, password: string) {
+	onLogin(username: string, password: string, gov: boolean) {
 		this.invalidInput = false;
 		this.noInput = false;
 		if (username && password) {
-			this.auth.authenticate(username, password)
+			this.auth.authenticate(username, password, gov)
 				.then(
 					res => {
 						console.log(res);
 						this.auth.setAuthKey(res.token);
-						this.auth.setOwner(res.owner);
 						this.router.navigate(['']);
 					}
 				)

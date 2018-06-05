@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Status} from "../../models/status.enum";
-import {Invoice} from "../../models/invoice.model";
-import {Owner} from "../../models/owner.model";
-import {InvoiceService} from "../../services/invoice.service";
+import {InvoiceService} from '../../services/invoice.service';
+import {InvoiceThin} from '../../models/invoice-thin.model';
 
 @Component({
 	selector: 'app-gov-invoices',
@@ -10,15 +8,15 @@ import {InvoiceService} from "../../services/invoice.service";
 	styleUrls: ['./gov-invoices.component.css']
 })
 export class GovInvoicesComponent implements OnInit {
-	invoices: Invoice[];
+	invoices: InvoiceThin[];
 
 	constructor(private invoiceService: InvoiceService) {
 	}
 
 	ngOnInit() {
-		// this.invoiceService.getAll().subscribe(invoices =>
-		// 	this.invoices = invoices
-		// );
+		this.invoiceService.getAll().subscribe(invoices =>
+			this.invoices = invoices
+		);
 	}
 
 }

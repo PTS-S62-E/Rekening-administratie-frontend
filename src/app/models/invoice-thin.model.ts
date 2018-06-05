@@ -11,17 +11,20 @@ export class InvoiceThin {
 	public due: Date;
 	public paid: boolean;
 	public price: number;
+	public name: string
 
 	constructor(id: number,
 				sendOn: Date,
 				due: Date,
 				paid: boolean,
-				price: number) {
+				price: number,
+				name: string) {
 		this.id = id;
 		this.sendOn = sendOn;
 		this.due = due;
 		this.paid = paid;
 		this.price = price;
+		this.name = name;
 	}
 
 	public getStatus(): Status {
