@@ -39,9 +39,6 @@ export class InvoiceThin {
 	public getPrice(): String {
 		const price = this.price / 100;
 
-		console.log(this.price);
-		console.log(price);
-
 		return price.toFixed(2).toString().replace('.', ',');
 	}
 
@@ -60,8 +57,6 @@ export class InvoiceThin {
 			'November',
 			'December'
 		];
-
-		console.log(this.sendOn);
 
 		return monthNames[this.sendOn.getMonth()];
 

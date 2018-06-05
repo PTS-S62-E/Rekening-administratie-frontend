@@ -30,8 +30,14 @@ import {RegisterPageComponent} from './pages/register-page/register-page.compone
 import {RegisterFormComponent} from './components/register-form/register-form.component';
 import {UserInvoiceComponent} from './components/user-invoice/user-invoice.component';
 import { CarsPageComponent } from './pages/cars-page/cars-page.component';
-import {OwnershipService} from "./services/ownership.service";
+import {OwnershipService} from './services/ownership.service';
 import { OwnershipComponent } from './components/ownership/ownership.component';
+import { CarPageComponent } from './pages/car-page/car-page.component';
+
+import { StompConfig, StompService } from '@stomp/ng2-stompjs';
+import { GenerateInvoicePageComponent } from './pages/generate-invoice-page/generate-invoice-page.component';
+import { GenerateInvoicesComponent } from './components/generate-invoices/generate-invoices.component';
+
 
 const appRoutes: Routes = [
 	{
@@ -61,8 +67,36 @@ const appRoutes: Routes = [
 		path: 'cars',
 		component: CarsPageComponent,
 		canActivate: [AuthGuardService]
+	},
+	{
+		path: 'cars/:id',
+		component: CarPageComponent,
+		canActivate: [AuthGuardService]
+	},
+	{
+		path: 'generate/invoices',
+		component: GenerateInvoicePageComponent,
+		canActivate: [AuthGuardService]
 	}
 ];
+
+const stompConfig: StompConfig = {
+	url: 'ws://teunwillems.nl:15674/ws',
+	debug: true,
+	headers: {
+		login: 'guest',
+		password: 'guest'
+	},
+	// How often to heartbeat?
+	// Interval in milliseconds, set to 0 to disable
+	heartbeat_in: 0, // Typical value 0 - disabled
+	heartbeat_out: 20000, // Typical value 20000 - every 20 seconds
+
+	// Wait in milliseconds before attempting auto reconnect
+	// Set to 0 to disable
+	// Typical value 5000 (5 seconds) but because this service will only be used for generating invoices, it is set to 10 seconds
+	reconnect_delay: 10000,
+};
 
 @NgModule({
 	declarations: [
@@ -81,6 +115,9 @@ const appRoutes: Routes = [
 		UserInvoiceComponent,
 		CarsPageComponent,
 		OwnershipComponent,
+		CarPageComponent,
+		GenerateInvoicePageComponent,
+		GenerateInvoicesComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -102,7 +139,12 @@ const appRoutes: Routes = [
 		AuthService,
 		CookieService,
 		InvoiceService,
-		OwnershipService
+		OwnershipService,
+		StompService,
+		{
+			provide: StompConfig,
+			useValue: stompConfig
+		}
 	],
 	bootstrap: [AppComponent]
 })
