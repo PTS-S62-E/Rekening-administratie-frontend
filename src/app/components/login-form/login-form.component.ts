@@ -27,6 +27,7 @@ export class LoginFormComponent implements OnInit {
 					res => {
 						console.log(res);
 						this.auth.setAuthKey(res.token);
+						this.auth.setOwner(res.owner);
 						this.router.navigate(['']);
 					}
 				)
