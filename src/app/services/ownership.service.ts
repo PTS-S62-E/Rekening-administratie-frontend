@@ -9,7 +9,8 @@ import {Vehicle} from '../models/vehicle.model';
 @Injectable()
 export class OwnershipService {
 
-	private baseAdministrationUrl = environment.administrationApiUrl + 'accounts/cars/';
+	private baseAdministrationUrl = environment.administrationApiUrl
+		+ 'accounts/cars/';
 	private baseRegistrionUrl = environment.registrationApiUrl + 'vehicle/';
 
 	constructor(private http: HttpClient, private auth: AuthService) {

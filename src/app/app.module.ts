@@ -37,6 +37,9 @@ import { CarPageComponent } from './pages/car-page/car-page.component';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
 import { GenerateInvoicePageComponent } from './pages/generate-invoice-page/generate-invoice-page.component';
 import { GenerateInvoicesComponent } from './components/generate-invoices/generate-invoices.component';
+import { GovCarsComponent } from './components/gov-cars/gov-cars.component';
+import { GovCarComponent } from './components/gov-car/gov-car.component';
+import {FormsModule} from "@angular/forms";
 
 
 const appRoutes: Routes = [
@@ -118,6 +121,8 @@ const stompConfig: StompConfig = {
 		CarPageComponent,
 		GenerateInvoicePageComponent,
 		GenerateInvoicesComponent,
+		GovCarsComponent,
+		GovCarComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -126,6 +131,7 @@ const stompConfig: StompConfig = {
 		),
 		AngularFontAwesomeModule,
 		HttpClientModule,
+		FormsModule,
 		TranslateModule.forRoot({
 			loader: {
 				provide: TranslateLoader,

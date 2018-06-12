@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
 	selector: 'app-cars-page',
@@ -6,8 +7,10 @@ import {Component, OnInit} from '@angular/core';
 	styleUrls: ['./cars-page.component.css']
 })
 export class CarsPageComponent implements OnInit {
+	public gov: boolean;
 
-	constructor() {
+	constructor(private authService: AuthService) {
+		this.gov = this.authService.getGov();
 	}
 
 	ngOnInit() {

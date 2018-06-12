@@ -15,9 +15,8 @@ export class AuthService {
 				private router: Router) {
 	}
 
-	// Todo: Connect with the proper backend
 	authenticate(email: string, password: string, gov: boolean): any {
-		this.gov = gov;
+		this.setGov(gov);
 
 		const headers = this.getHeaders();
 
@@ -75,6 +74,14 @@ export class AuthService {
 		this.cookieService.deleteAll('Auth');
 
 		this.router.navigate(['login']);
+	}
+
+	getGov(): boolean {
+		return (this.cookieService.get('Gov') === 'true');
+	}
+
+	setGov(value: boolean) {
+		this.cookieService.set('Gov', value.toString());
 	}
 
 

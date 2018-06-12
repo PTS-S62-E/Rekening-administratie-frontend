@@ -1,0 +1,60 @@
+<div class="row">
+	<section class="col-md">
+		<form (submit)="searchVehicle(licenseplateInput.value)">
+			<fieldset>
+				<div class="form-group">
+					<label for="licenseplate">
+						Licenseplate
+					</label>
+					<input type="text"
+						   class="form-control"
+						   id="licenseplate"
+						   #licenseplateInput>
+				</div>
+			</fieldset>
+		</form>
+	</section>
+</div>
+<div class="row">
+	<section id="car" class="col-md">
+		<div class="card border-primary">
+			<div class="card-header">{{this.licenseplate ||
+				'No car selected'}}
+			</div>
+			<div class="card-body" *ngIf="!this.loading && this.invoices">
+				<p><b>Brand: </b>{{vehicle?.brand}}</p>
+				<p><b>Type: </b>{{vehicle?.type}}</p>
+				<p><b>Category: </b>{{vehicle?.category}}</p>
+				<table class="table">
+					<thead>
+					<tr>
+						<th scope="col" translate>Person</th>
+						<th scope="col" translate>Price</th>
+						<th scope="col" translate>Due date</th>
+						<th scope="col" translate>Status</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr *ngFor="let invoice of invoices">
+						<th scope="row">
+							<a [routerLink]="['/facturen/', invoice?.id]">
+								{{invoice.name}}
+							</a>
+						</th>
+						<td>€ {{invoice?.getPrice()}}</td>
+						<td>
+							{{invoice?.due.getDate()}}-{{invoice?.due.getMonth()
+							+
+							1}}-{{invoice?.due.getFullYear()}}
+						</td>
+						<td>
+							<app-status-icon
+								[status]="invoice?.getStatus()"></app-status-icon>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</div>

@@ -10,7 +10,7 @@ export class HomePageComponent implements OnInit {
 	public gov: boolean;
 
 	constructor(private authService: AuthService) {
-		this.gov = this.authService.gov;
+		this.gov = this.authService.getGov();
 	}
 
 	ngOnInit() {

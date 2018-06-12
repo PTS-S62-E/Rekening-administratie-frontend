@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-md">
-		<h1 translate>Car Ownership</h1>
-		<app-ownership></app-ownership>
+		<h1 translate>Cars</h1>
 	</div>
 </div>
+<app-gov-cars *ngIf="this.gov"></app-gov-cars>
+<app-ownership *ngIf="!this.gov"></app-ownership>

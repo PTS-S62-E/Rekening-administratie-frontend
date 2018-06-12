@@ -81,6 +81,40 @@ export class InvoiceService {
 		}
 	}
 
+	getByLicenseplate(licenseplate: string) {
+		if (this.auth.isAuthenticated()) {
+			return this.http.get<InvoiceThin[]>(
+				this.baseUrl + 'vehicles/' + licenseplate,
+				{headers: this.getHeaders()}
+			).map(result => {
+				const results = [];
+
+				console.log(result);
+
+				for (const invoice of result) {
+					const sentDate = new Date(invoice['invoiceDate']);
+
+					// Flipping JavaScript...
+					const dueDate = new Date(new Date(sentDate)
+						.setMonth(sentDate.getMonth() + 1));
+
+					results.push(new InvoiceThin(
+						invoice['id'],
+						sentDate,
+						dueDate,
+						invoice['paymentStatus'],
+						invoice['price'],
+						invoice['ownerName']
+					));
+				}
+
+				return results;
+			});
+		} else {
+			return null;
+		}
+	}
+
 	public pay(index: number) {
 		const headers = this.getHeaders();
 
